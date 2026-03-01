@@ -1,0 +1,475 @@
+/* =========================================
+   PREMIUM PRICING PAGE
+   ========================================= */
+.pp-page {
+    min-height: 100vh;
+    background: var(--bg-deep, #0a0a0e);
+    color: var(--text-primary, #f0f0f5);
+    padding-top: 80px;
+}
+
+.pp-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+}
+
+/* ── Header ── */
+.pp-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.pp-badge {
+    display: inline-block;
+    padding: 8px 20px;
+    background: rgba(124, 92, 252, 0.08);
+    border: 1px solid rgba(124, 92, 252, 0.15);
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--accent-light, #a78bfa);
+    letter-spacing: 0.06em;
+    margin-bottom: 20px;
+}
+
+.pp-title {
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 14px;
+}
+
+.pp-subtitle {
+    font-size: 1.05rem;
+    color: var(--text-secondary, rgba(255, 255, 255, 0.6));
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* ── User Type Toggle ── */
+.pp-type-toggle {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 24px;
+    padding: 6px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.pp-type-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 28px;
+    background: transparent;
+    border: none;
+    border-radius: 10px;
+    color: var(--text-secondary, rgba(255, 255, 255, 0.5));
+    font-family: inherit;
+    font-size: 0.92rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.pp-type-btn.active {
+    background: linear-gradient(135deg, rgba(124, 92, 252, 0.2), rgba(139, 92, 246, 0.15));
+    color: #fff;
+    box-shadow: 0 0 20px rgba(124, 92, 252, 0.15);
+    border: 1px solid rgba(124, 92, 252, 0.25);
+}
+
+.pp-type-btn:not(.active):hover {
+    color: var(--text-primary, #fff);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.pp-type-icon {
+    font-size: 1.1rem;
+}
+
+/* ── Billing Toggle ── */
+.pp-billing-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 48px;
+    font-size: 0.9rem;
+    color: var(--text-secondary, rgba(255, 255, 255, 0.5));
+}
+
+.pp-billing-toggle span.active {
+    color: var(--text-primary, #fff);
+    font-weight: 600;
+}
+
+.pp-toggle-switch {
+    position: relative;
+    width: 52px;
+    height: 28px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 999px;
+    cursor: pointer;
+    padding: 0;
+    transition: all 0.3s ease;
+}
+
+.pp-toggle-switch.on {
+    background: linear-gradient(135deg, #7c5cfc, #8b5cf6);
+    border-color: rgba(124, 92, 252, 0.5);
+}
+
+.pp-toggle-knob {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.pp-toggle-switch.on .pp-toggle-knob {
+    transform: translateX(24px);
+}
+
+.pp-save-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    background: linear-gradient(135deg, #1dbf73, #19a463);
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    border-radius: 999px;
+    margin-left: 6px;
+    letter-spacing: 0.02em;
+}
+
+/* ── Cards Grid ── */
+.pp-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 64px;
+}
+
+.pp-cards--enter .pp-card {
+    animation: ppCardIn 0.5s ease forwards;
+}
+
+.pp-cards--exit .pp-card {
+    animation: ppCardOut 0.25s ease forwards;
+}
+
+@keyframes ppCardIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes ppCardOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+/* ── Single Card ── */
+.pp-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 36px 28px 28px;
+    background: rgba(16, 16, 26, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 20px;
+    transition: all 0.35s ease;
+    overflow: hidden;
+}
+
+.pp-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 20%;
+    right: 20%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(124, 92, 252, 0.3), transparent);
+}
+
+.pp-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(124, 92, 252, 0.2);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 30px rgba(124, 92, 252, 0.06);
+}
+
+/* Popular card */
+.pp-card--popular {
+    border-color: rgba(124, 92, 252, 0.3);
+    background: rgba(20, 16, 40, 0.7);
+    transform: scale(1.04);
+    box-shadow: 0 0 40px rgba(124, 92, 252, 0.1), 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.pp-card--popular::before {
+    background: linear-gradient(90deg, transparent, rgba(124, 92, 252, 0.6), rgba(236, 72, 153, 0.4), transparent);
+}
+
+.pp-card--popular:hover {
+    transform: scale(1.04) translateY(-6px);
+    box-shadow: 0 0 50px rgba(124, 92, 252, 0.15), 0 24px 60px rgba(0, 0, 0, 0.35);
+}
+
+.pp-card--free {
+    opacity: 0.7;
+}
+
+.pp-card-badge {
+    position: absolute;
+    top: 0;
+    right: 24px;
+    padding: 6px 16px;
+    background: linear-gradient(135deg, #7c5cfc, #ec4899);
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    border-radius: 0 0 10px 10px;
+    letter-spacing: 0.04em;
+}
+
+.pp-card-header {
+    margin-bottom: 24px;
+}
+
+.pp-plan-name {
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    color: var(--text-primary, #fff);
+}
+
+.pp-plan-desc {
+    font-size: 0.82rem;
+    color: var(--text-secondary, rgba(255, 255, 255, 0.5));
+    line-height: 1.5;
+}
+
+/* ── Price ── */
+.pp-price {
+    display: flex;
+    align-items: baseline;
+    gap: 2px;
+    margin-bottom: 4px;
+}
+
+.pp-price-currency {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-secondary, rgba(255, 255, 255, 0.6));
+}
+
+.pp-price-amount {
+    font-size: 2.8rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    background: linear-gradient(135deg, #fff, rgba(255, 255, 255, 0.7));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.pp-price-period {
+    font-size: 0.9rem;
+    color: var(--text-muted, rgba(255, 255, 255, 0.4));
+    margin-left: 4px;
+}
+
+.pp-billed-yearly {
+    font-size: 0.78rem;
+    color: var(--text-muted, rgba(255, 255, 255, 0.4));
+    margin-bottom: 20px;
+}
+
+/* ── Features ── */
+.pp-features {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1;
+}
+
+.pp-feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.85rem;
+    color: var(--text-secondary, rgba(255, 255, 255, 0.7));
+    line-height: 1.5;
+}
+
+.pp-feature-icon {
+    font-size: 0.9rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+/* ── CTA Button ── */
+.pp-cta {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    margin-top: 28px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #fff;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.pp-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(99, 102, 241, 0.35);
+    background: linear-gradient(135deg, #7c5cfc, #a78bfa);
+}
+
+.pp-cta--popular {
+    background: linear-gradient(135deg, #7c5cfc, #ec4899);
+}
+
+.pp-cta--popular:hover {
+    background: linear-gradient(135deg, #8b6aff, #f472b6);
+    box-shadow: 0 8px 24px rgba(124, 92, 252, 0.4);
+}
+
+.pp-cta--disabled {
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--text-muted, rgba(255, 255, 255, 0.35));
+    cursor: default;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.pp-cta--disabled:hover {
+    transform: none;
+    box-shadow: none;
+    background: rgba(255, 255, 255, 0.06);
+}
+
+/* ── Why Premium ── */
+.pp-why {
+    text-align: center;
+    padding: 48px 0 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.pp-why-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 32px;
+    letter-spacing: -0.02em;
+}
+
+.pp-why-grid {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.pp-why-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: var(--text-secondary, rgba(255, 255, 255, 0.65));
+    font-weight: 500;
+}
+
+.pp-why-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(124, 92, 252, 0.1);
+    border: 1px solid rgba(124, 92, 252, 0.15);
+    border-radius: 10px;
+    font-size: 1.1rem;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+    .pp-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .pp-card--popular {
+        transform: scale(1);
+    }
+
+    .pp-card--popular:hover {
+        transform: translateY(-6px);
+    }
+}
+
+@media (max-width: 600px) {
+    .pp-cards {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .pp-type-toggle {
+        flex-direction: row;
+    }
+
+    .pp-type-btn {
+        padding: 10px 20px;
+        font-size: 0.85rem;
+    }
+
+    .pp-why-grid {
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+    }
+
+    .pp-card--popular {
+        transform: scale(1);
+    }
+}

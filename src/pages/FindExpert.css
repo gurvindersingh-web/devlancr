@@ -1,0 +1,449 @@
+/* =========================================
+   FIND EXPERT PAGE — AI CHAT INTERFACE
+   ========================================= */
+
+/* ── Full-screen Layout ── */
+.fe {
+    display: flex;
+    height: 100vh;
+    background: var(--ag-cosmic-1);
+    color: var(--text-primary);
+    position: relative;
+    overflow: hidden;
+}
+
+/* ── Sidebar — Minimal Glass Panel ── */
+.fe__sidebar {
+    width: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    gap: 8px;
+    background: rgba(10, 10, 30, 0.6);
+    border-right: 1px solid rgba(139, 92, 246, 0.08);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    z-index: 10;
+    flex-shrink: 0;
+}
+
+.fe__sidebar-logo {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+    cursor: pointer;
+    transition: all var(--duration-base) var(--ag-ease-antigrav);
+}
+
+.fe__sidebar-logo .gradient-text {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: var(--fw-bold);
+}
+
+.fe__sidebar-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-md);
+    border: none;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--duration-base) var(--ag-ease-antigrav);
+    position: relative;
+}
+
+.fe__sidebar-btn:hover {
+    color: rgba(255, 255, 255, 0.85);
+    background: rgba(139, 92, 246, 0.1);
+}
+
+.fe__sidebar-btn--active {
+    color: rgba(255, 255, 255, 0.9);
+    background: rgba(139, 92, 246, 0.12);
+}
+
+.fe__sidebar-btn--active::before {
+    content: '';
+    position: absolute;
+    left: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 20px;
+    border-radius: 0 3px 3px 0;
+    background: var(--ag-energy);
+}
+
+.fe__sidebar-spacer {
+    flex: 1;
+}
+
+.fe__sidebar-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #8b5cf6, #ec4899);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: var(--fw-bold);
+    color: #fff;
+    cursor: pointer;
+    transition: all var(--duration-base) var(--ag-ease-antigrav);
+    margin-top: auto;
+}
+
+.fe__sidebar-avatar:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+}
+
+/* ── Main Content Area ── */
+.fe__main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+/* ── Top Bar ── */
+.fe__topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 24px;
+    position: relative;
+    z-index: 5;
+}
+
+.fe__topbar-model {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.88rem;
+    font-weight: var(--fw-medium);
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    padding: 6px 12px;
+    border-radius: var(--radius-md);
+    transition: all var(--duration-base) var(--ag-ease-antigrav);
+}
+
+.fe__topbar-model:hover {
+    background: rgba(139, 92, 246, 0.08);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.fe__topbar-model svg {
+    opacity: 0.5;
+}
+
+.fe__topbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.fe__topbar-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-md);
+    border: none;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--duration-base) var(--ag-ease-antigrav);
+}
+
+.fe__topbar-btn:hover {
+    color: rgba(255, 255, 255, 0.85);
+    background: rgba(139, 92, 246, 0.08);
+}
+
+/* ── Center Content ── */
+.fe__center {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    padding: 0 24px 24px;
+    position: relative;
+}
+
+/* Orb container — center focal point */
+.fe__orb-wrapper {
+    width: 280px;
+    height: 280px;
+    position: relative;
+    animation: feOrbFloat 6s var(--ag-ease-float) infinite;
+}
+
+.fe__orb-wrapper::after {
+    content: '';
+    position: absolute;
+    inset: -40px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+    animation: feOrbPulse 4s ease-in-out infinite;
+}
+
+.fe__heading {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 3vw, 2rem);
+    font-weight: var(--fw-medium);
+    color: rgba(255, 255, 255, 0.85);
+    text-align: center;
+    letter-spacing: -0.02em;
+    margin-top: 8px;
+}
+
+/* ── Suggestion Chips ── */
+.fe__suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    max-width: 700px;
+    margin-top: 8px;
+}
+
+.fe__suggestion {
+    padding: 10px 20px;
+    font-size: 0.82rem;
+    font-weight: var(--fw-medium);
+    color: rgba(255, 255, 255, 0.55);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: all var(--duration-base) var(--ag-ease-antigrav);
+    white-space: nowrap;
+}
+
+.fe__suggestion:hover {
+    color: rgba(255, 255, 255, 0.9);
+    background: rgba(139, 92, 246, 0.1);
+    border-color: rgba(139, 92, 246, 0.25);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(139, 92, 246, 0.1);
+}
+
+/* ── Bottom Input Bar ── */
+.fe__input-area {
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px 32px;
+    position: relative;
+    z-index: 5;
+}
+
+.fe__input-bar {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 6px 6px 8px;
+    background: rgba(50, 50, 68, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 26px;
+    transition: all var(--duration-base) var(--ag-ease-antigrav);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+.fe__input-bar:focus-within {
+    border-color: rgba(139, 92, 246, 0.3);
+    background: rgba(50, 50, 68, 0.65);
+    box-shadow: 0 0 30px rgba(139, 92, 246, 0.08);
+}
+
+.fe__input-attach {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all var(--duration-base) var(--ag-ease-antigrav);
+}
+
+.fe__input-attach:hover {
+    color: rgba(255, 255, 255, 0.8);
+    background: rgba(139, 92, 246, 0.1);
+}
+
+.fe__input-field {
+    flex: 1;
+    height: 44px;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.92rem;
+    font-family: inherit;
+    padding: 0 8px;
+}
+
+.fe__input-field::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.fe__input-actions {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+}
+
+.fe__input-icon-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.35);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--duration-base) var(--ag-ease-antigrav);
+}
+
+.fe__input-icon-btn:hover {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.fe__input-send {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.12);
+    color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--duration-base) var(--ag-ease-antigrav);
+}
+
+.fe__input-send:hover {
+    background: var(--ag-energy);
+    color: #fff;
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+}
+
+/* ── Footer text ── */
+.fe__footer-text {
+    text-align: center;
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.2);
+    padding-bottom: 16px;
+}
+
+/* ── Ambient Background Orbs ── */
+.fe__ambient {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.fe__ambient-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.1;
+    will-change: transform;
+}
+
+.fe__ambient-orb--1 {
+    width: 500px;
+    height: 500px;
+    top: -200px;
+    right: -100px;
+    background: radial-gradient(circle, #6366f1 0%, transparent 70%);
+    animation: agDrift 30s var(--ag-ease-drift) infinite;
+}
+
+.fe__ambient-orb--2 {
+    width: 400px;
+    height: 400px;
+    bottom: -150px;
+    left: -100px;
+    background: radial-gradient(circle, #8b5cf6 0%, transparent 70%);
+    animation: agDrift 25s var(--ag-ease-drift) infinite reverse;
+}
+
+/* ── Keyframes ── */
+@keyframes feOrbFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
+@keyframes feOrbPulse {
+
+    0%,
+    100% {
+        opacity: 0.6;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+    .fe__sidebar {
+        width: 0;
+        overflow: hidden;
+        border: none;
+        padding: 0;
+    }
+
+    .fe__orb-wrapper {
+        width: 200px;
+        height: 200px;
+    }
+
+    .fe__heading {
+        font-size: 1.4rem;
+    }
+
+    .fe__input-area {
+        padding: 0 16px 24px;
+    }
+}
