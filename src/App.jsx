@@ -16,6 +16,8 @@ import WalletPage from './pages/WalletPage';
 import ProfilePage from './pages/ProfilePage';
 import AdminPage from './pages/AdminPage';
 import PremiumPricing from './pages/PremiumPricing';
+import BlogListPage from './pages/BlogListPage';
+import BlogDetailPage from './pages/BlogDetailPage';
 import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
@@ -27,6 +29,8 @@ function App() {
       <Route path="/find-expert" element={<FindExpertPage />} />
       <Route path="/service/:serviceName" element={<ServiceDetailPage />} />
       <Route path="/premium" element={<PremiumPricing />} />
+      <Route path="/blog" element={<BlogListPage />} />
+      <Route path="/blog/:slug" element={<BlogDetailPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/projects" element={<ProjectListPage />} />

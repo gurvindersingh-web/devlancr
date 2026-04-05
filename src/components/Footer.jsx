@@ -21,6 +21,7 @@ const Footer = () => {
                             <a href="#" className="footer__link">HOME</a>
                             <a href="#whatwedo" className="footer__link">HOW IT WORKS</a>
                             <a href="#platform" className="footer__link">PLATFORM</a>
+                            <a href="/blog" className="footer__link">BLOG</a>
                             <a href="#" className="footer__link">ABOUT US</a>
                             <a href="#" className="footer__link">CONTACT</a>
                         </nav>
