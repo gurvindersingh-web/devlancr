@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { projectAPI } from '../services/api';
 import Navbar from '../components/Navbar';
@@ -11,9 +11,7 @@ export default function ProjectListPage() {
     const [page, setPage] = useState(0);
     const [totalPages, setTotalPages] = useState(0);
 
-    useEffect(() => { search(); }, [page]);
-
-    async function search() {
+    const search = useCallback(async (nextPage = page) => {
         setLoading(true);
         try {
             const params = new URLSearchParams();
@@ -22,7 +20,7 @@ export default function ProjectListPage() {
             if (filters.level) params.append('level', filters.level);
             if (filters.minBudget) params.append('minBudget', filters.minBudget);
             if (filters.maxBudget) params.append('maxBudget', filters.maxBudget);
-            params.append('page', page);
+            params.append('page', nextPage);
             params.append('size', 12);
 
             const res = await projectAPI.getAll(params.toString());
@@ -30,7 +28,9 @@ export default function ProjectListPage() {
             setTotalPages(res.data?.totalPages || 0);
         } catch (err) { console.error(err); }
         finally { setLoading(false); }
-    }
+    }, [filters, page]);
+
+    useEffect(() => { search(page); }, [page, search]);
 
     return (
         <>
@@ -57,7 +57,7 @@ export default function ProjectListPage() {
                         onChange={e => setFilters({ ...filters, minBudget: e.target.value })} />
                     <input type="number" placeholder="Max $" style={{ width: '100px' }} value={filters.maxBudget}
                         onChange={e => setFilters({ ...filters, maxBudget: e.target.value })} />
-                    <button className="btn-filter" onClick={() => { setPage(0); search(); }}>Search</button>
+                    <button className="btn-filter" onClick={() => { setPage(0); search(0); }}>Search</button>
                 </div>
 
                 {loading ? (

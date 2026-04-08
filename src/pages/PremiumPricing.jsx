@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useSearchParams, useNavigate } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import './PremiumPricing.css';
 
@@ -122,7 +122,6 @@ const featureIcons = {
 
 function PremiumPricing() {
     const [searchParams] = useSearchParams();
-    const navigate = useNavigate();
     const initialType = searchParams.get('type') === 'client' ? 'client' : 'freelancer';
     const [userType, setUserType] = useState(initialType);
     const [billing, setBilling] = useState('monthly');

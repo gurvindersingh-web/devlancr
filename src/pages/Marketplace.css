@@ -1870,6 +1870,14 @@
     color: rgba(26, 26, 46, 0.6);
 }
 
+[data-theme="light"] .mp__about-title {
+    color: var(--text-primary);
+}
+
+[data-theme="light"] .mp__about-desc {
+    color: var(--text-secondary);
+}
+
 [data-theme="light"] .mp__promo-visual::after {
     background: linear-gradient(to right, rgba(240, 238, 245, 0.5), transparent 50%);
 }

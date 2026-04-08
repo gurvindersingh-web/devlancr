@@ -1,8 +1,9 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import { messageAPI } from '../services/api';
 import { useAuth } from '../context/AuthContext';
 import Navbar from '../components/Navbar';
+import EmptyState from '../components/EmptyState';
 import './Dashboard.css';
 
 export default function ChatPage() {
@@ -13,16 +14,25 @@ export default function ChatPage() {
     const [loading, setLoading] = useState(true);
     const bottomRef = useRef(null);
 
-    useEffect(() => { loadMessages(); const i = setInterval(loadMessages, 5000); return () => clearInterval(i); }, [contractId]);
-    useEffect(() => { bottomRef.current?.scrollIntoView({ behavior: 'smooth' }); }, [messages]);
-
-    async function loadMessages() {
+    // TODO: Phase 8 — Replace polling with WebSocket (STOMP over WS)
+    const loadMessages = useCallback(async () => {
         try {
             const res = await messageAPI.getForContract(contractId);
             setMessages(res.data || []);
-        } catch (err) { console.error(err); }
-        finally { setLoading(false); }
-    }
+        } catch (err) {
+            console.error(err);
+        } finally {
+            setLoading(false);
+        }
+    }, [contractId]);
+
+    useEffect(() => {
+        setLoading(true);
+        loadMessages();
+        const i = setInterval(loadMessages, 5000);
+        return () => clearInterval(i);
+    }, [loadMessages]);
+    useEffect(() => { bottomRef.current?.scrollIntoView({ behavior: 'smooth' }); }, [messages]);
 
     async function sendMessage(e) {
         e.preventDefault();
@@ -42,7 +52,7 @@ export default function ChatPage() {
                     <h2 style={{ color: '#fff', padding: '0 1rem' }}>💬 Contract Chat</h2>
                     <div className="chat-messages">
                         {loading ? <div className="spinner" style={{ margin: '2rem auto' }}></div> :
-                            messages.length === 0 ? <div className="empty-state"><p>No messages yet</p></div> :
+                            messages.length === 0 ? <EmptyState icon="💬" title="No messages yet" description="Start the conversation! Send a message to get things rolling." /> :
                                 messages.map(m => (
                                     <div key={m.id} className={`chat-bubble ${m.sender?.id === user?.id ? 'sent' : 'received'}`}>
                                         <div>{m.content}</div>
