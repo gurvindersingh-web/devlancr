@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import { projectAPI, proposalAPI } from '../services/api';
 import { useAuth } from '../context/AuthContext';
@@ -18,9 +18,7 @@ export default function ProjectDetailPage2() {
     const isFreelancer = user?.roles?.includes('ROLE_FREELANCER');
     const isOwner = project && user && project.clientUserId === user.id;
 
-    useEffect(() => { load(); }, [id]);
-
-    async function load() {
+    const load = useCallback(async () => {
         try {
             const res = await projectAPI.getById(id);
             setProject(res.data);
@@ -30,7 +28,12 @@ export default function ProjectDetailPage2() {
             }
         } catch (err) { console.error(err); }
         finally { setLoading(false); }
-    }
+    }, [id, user]);
+
+    useEffect(() => {
+        setLoading(true);
+        load();
+    }, [load]);
 
     async function submitProposal(e) {
         e.preventDefault();

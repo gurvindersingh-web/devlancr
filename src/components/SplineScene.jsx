@@ -14,6 +14,7 @@ const SplineScene = forwardRef(function SplineScene({ onSplineLoad }, ref) {
             // ✅ OPTIMIZED: Cap DPR for performance on high-DPI screens
             const canvas = splineApp.canvas;
             if (canvas) {
+                // eslint-disable-next-line no-unused-vars
                 const dpr = Math.min(window.devicePixelRatio || 1, 2); // Cap at 2x
                 canvas.style.maxWidth = '100%';
                 canvas.style.maxHeight = '100%';

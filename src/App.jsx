@@ -22,53 +22,62 @@ import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
-    <Routes>
-      {/* Public */}
-      <Route path="/" element={<LandingPage />} />
-      <Route path="/marketplace" element={<MarketplacePage />} />
-      <Route path="/find-expert" element={<FindExpertPage />} />
-      <Route path="/service/:serviceName" element={<ServiceDetailPage />} />
-      <Route path="/premium" element={<PremiumPricing />} />
-      <Route path="/blog" element={<BlogListPage />} />
-      <Route path="/blog/:slug" element={<BlogDetailPage />} />
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/register" element={<RegisterPage />} />
-      <Route path="/projects" element={<ProjectListPage />} />
-      <Route path="/project/:id" element={<ProjectDetailPage2 />} />
-      <Route path="/profile/:userId" element={<ProfilePage />} />
+    <>
+      {/* Accessibility: skip link — first focusable element */}
+      <a href="#main-content" className="skip-link">
+        Skip to content
+      </a>
 
-      {/* Client Protected */}
-      <Route path="/client-dashboard" element={
-        <ProtectedRoute role="CLIENT"><ClientDashboardPage /></ProtectedRoute>
-      } />
-      <Route path="/post-project" element={
-        <ProtectedRoute role="CLIENT"><PostProjectPage /></ProtectedRoute>
-      } />
+      <main id="main-content">
+        <Routes>
+          {/* Public */}
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/marketplace" element={<MarketplacePage />} />
+          <Route path="/find-expert" element={<FindExpertPage />} />
+          <Route path="/service/:serviceName" element={<ServiceDetailPage />} />
+          <Route path="/premium" element={<PremiumPricing />} />
+          <Route path="/blog" element={<BlogListPage />} />
+          <Route path="/blog/:slug" element={<BlogDetailPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/projects" element={<ProjectListPage />} />
+          <Route path="/project/:id" element={<ProjectDetailPage2 />} />
+          <Route path="/profile/:userId" element={<ProfilePage />} />
 
-      {/* Freelancer Protected */}
-      <Route path="/freelancer-dashboard" element={
-        <ProtectedRoute role="FREELANCER"><FreelancerDashboardPage /></ProtectedRoute>
-      } />
+          {/* Client Protected */}
+          <Route path="/client-dashboard" element={
+            <ProtectedRoute role="CLIENT"><ClientDashboardPage /></ProtectedRoute>
+          } />
+          <Route path="/post-project" element={
+            <ProtectedRoute role="CLIENT"><PostProjectPage /></ProtectedRoute>
+          } />
 
-      {/* Auth Protected (any role) */}
-      <Route path="/chat/:contractId" element={
-        <ProtectedRoute><ChatPage /></ProtectedRoute>
-      } />
-      <Route path="/wallet" element={
-        <ProtectedRoute><WalletPage /></ProtectedRoute>
-      } />
-      <Route path="/profile" element={
-        <ProtectedRoute><ProfilePage /></ProtectedRoute>
-      } />
+          {/* Freelancer Protected */}
+          <Route path="/freelancer-dashboard" element={
+            <ProtectedRoute role="FREELANCER"><FreelancerDashboardPage /></ProtectedRoute>
+          } />
 
-      {/* Admin Protected */}
-      <Route path="/admin" element={
-        <ProtectedRoute role="ADMIN"><AdminPage /></ProtectedRoute>
-      } />
+          {/* Auth Protected (any role) */}
+          <Route path="/chat/:contractId" element={
+            <ProtectedRoute><ChatPage /></ProtectedRoute>
+          } />
+          <Route path="/wallet" element={
+            <ProtectedRoute><WalletPage /></ProtectedRoute>
+          } />
+          <Route path="/profile" element={
+            <ProtectedRoute><ProfilePage /></ProtectedRoute>
+          } />
 
-      {/* 404 — redirect all unknown routes back to home */}
-      <Route path="*" element={<Navigate to="/" replace />} />
-    </Routes>
+          {/* Admin Protected */}
+          <Route path="/admin" element={
+            <ProtectedRoute role="ADMIN"><AdminPage /></ProtectedRoute>
+          } />
+
+          {/* 404 — redirect all unknown routes back to home */}
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </main>
+    </>
   );
 }
 

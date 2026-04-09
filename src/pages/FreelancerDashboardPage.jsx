@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { projectAPI, proposalAPI, walletAPI } from '../services/api';
 import { useAuth } from '../context/AuthContext';
 import Navbar from '../components/Navbar';
+import EmptyState from '../components/EmptyState';
 import './Dashboard.css';
 
 export default function FreelancerDashboardPage() {
     const { user } = useAuth();
+    const navigate = useNavigate();
     const [projects, setProjects] = useState([]);
     const [proposals, setProposals] = useState([]);
     const [wallet, setWallet] = useState(null);
@@ -69,10 +71,12 @@ export default function FreelancerDashboardPage() {
                 {loading ? (
                     <div className="loading-screen" style={{ minHeight: '200px' }}><div className="spinner"></div></div>
                 ) : projects.length === 0 ? (
-                    <div className="empty-state">
-                        <h3>No open projects</h3>
-                        <p>Check back later for new opportunities.</p>
-                    </div>
+                    <EmptyState
+                        icon="🔍"
+                        title="No open projects"
+                        description="There are no open projects right now. Check back soon for new opportunities!"
+                        action={{ label: 'Browse All Projects', onClick: () => navigate('/projects') }}
+                    />
                 ) : (
                     <div className="projects-grid">
                         {projects.map(project => (

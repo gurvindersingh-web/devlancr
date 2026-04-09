@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { walletAPI } from '../services/api';
 import Navbar from '../components/Navbar';
+import EmptyState from '../components/EmptyState';
 import './Dashboard.css';
 
 export default function WalletPage() {
@@ -50,7 +51,7 @@ export default function WalletPage() {
                 </div>
                 <h2 className="section-title" style={{ marginTop: '1.5rem' }}>📊 Transaction History</h2>
                 <div className="transactions-list">
-                    {transactions.length === 0 ? <div className="empty-state"><p>No transactions</p></div> :
+                    {transactions.length === 0 ? <EmptyState icon="📂" title="No transactions yet" description="Your transaction history will appear here after your first deposit or payment." /> :
                         transactions.map(t => (
                             <div className="transaction-item" key={t.id}>
                                 <div className="txn-info">

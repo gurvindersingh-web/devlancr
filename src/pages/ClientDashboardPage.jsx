@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { projectAPI, proposalAPI } from '../services/api';
+import { Link, useNavigate } from 'react-router-dom';
+import { projectAPI } from '../services/api';
 import { useAuth } from '../context/AuthContext';
 import Navbar from '../components/Navbar';
+import EmptyState from '../components/EmptyState';
 import './Dashboard.css';
 
 export default function ClientDashboardPage() {
     const { user } = useAuth();
+    const navigate = useNavigate();
     const [projects, setProjects] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -66,10 +68,12 @@ export default function ClientDashboardPage() {
                 {loading ? (
                     <div className="loading-screen" style={{ minHeight: '200px' }}><div className="spinner"></div></div>
                 ) : projects.length === 0 ? (
-                    <div className="empty-state">
-                        <h3>No projects yet</h3>
-                        <p>Post your first project and find amazing freelancers.</p>
-                    </div>
+                    <EmptyState
+                        icon="📋"
+                        title="No projects yet"
+                        description="Post your first project to get proposals from top freelancers."
+                        action={{ label: 'Post a Project', onClick: () => navigate('/post-project') }}
+                    />
                 ) : (
                     <div className="projects-grid">
                         {projects.map(project => (

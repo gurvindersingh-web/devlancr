@@ -1,0 +1,88 @@
+/* =========================================
+   EMPTY STATE — Premium Reusable Component
+   ========================================= */
+.empty-state-component {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 48px 32px;
+    min-height: 240px;
+    border-radius: var(--radius-lg);
+    background: var(--ag-glass);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--ag-glass-border);
+    position: relative;
+    overflow: hidden;
+    animation: agRevealUp 0.6s var(--ag-ease-antigrav) both;
+}
+
+/* Decorative top line */
+.empty-state-component::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 20%;
+    right: 20%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.3), transparent);
+}
+
+/* Subtle floating animation on icon */
+.empty-state__icon {
+    font-size: 3rem;
+    margin-bottom: var(--space-5);
+    animation: agFloat 5s var(--ag-ease-float) infinite;
+    line-height: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .empty-state__icon {
+        animation: none;
+    }
+    .empty-state-component {
+        animation: none;
+    }
+}
+
+.empty-state__title {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: var(--fw-semibold);
+    color: var(--text-primary);
+    margin-bottom: var(--space-3);
+    letter-spacing: -0.01em;
+}
+
+.empty-state__description {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    line-height: 1.6;
+    max-width: 360px;
+    margin-bottom: var(--space-6);
+}
+
+.empty-state__action {
+    padding: 10px 24px;
+    font-family: var(--font-primary);
+    font-size: var(--text-sm);
+    font-weight: var(--fw-semibold);
+    color: #fff;
+    background: var(--accent-gradient);
+    border: none;
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: all var(--duration-base) var(--ease-out);
+    box-shadow: var(--accent-glow);
+}
+
+.empty-state__action:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--accent-glow-strong);
+}
+
+.empty-state__action:active {
+    transform: translateY(0);
+}

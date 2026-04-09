@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import { userAPI, reviewAPI } from '../services/api';
 import { useAuth } from '../context/AuthContext';
@@ -14,11 +14,7 @@ export default function ProfilePage() {
 
     const targetId = userId || currentUser?.id;
 
-    useEffect(() => {
-        if (targetId) load();
-    }, [targetId]);
-
-    async function load() {
+    const load = useCallback(async () => {
         try {
             const res = userId ? await userAPI.getUser(userId) : await userAPI.getMe();
             setProfile(res.data);
@@ -26,7 +22,13 @@ export default function ProfilePage() {
             setReviews(revRes.data || []);
         } catch (err) { console.error(err); }
         finally { setLoading(false); }
-    }
+    }, [userId]);
+
+    useEffect(() => {
+        if (!targetId) return;
+        setLoading(true);
+        load();
+    }, [targetId, load]);
 
     if (loading) return <><Navbar /><div className="loading-screen"><div className="spinner"></div></div></>;
     if (!profile) return <><Navbar /><div className="profile-page"><div className="empty-state"><h3>Not found</h3></div></div></>;

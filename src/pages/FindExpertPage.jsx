@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useState, lazy, Suspense } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Orb from '../component/Orb';
 import './FindExpert.css';
+
+// ✅ Lazy-load WebGL component
+const Orb = lazy(() => import('../component/Orb'));
 
 const SUGGESTIONS = [
     '🎨 Find a UI/UX designer',
@@ -101,7 +103,9 @@ function FindExpertPage() {
                 <div className="fe__center">
                     {/* Orb — focal point */}
                     <div className="fe__orb-wrapper">
-                        <Orb hue={260} hoverIntensity={0.3} rotateOnHover={true} />
+                        <Suspense fallback={<div style={{ width: '100%', height: '100%', background: 'radial-gradient(circle, rgba(139,92,246,0.3) 0%, transparent 70%)' }} />}>
+                            <Orb hue={260} hoverIntensity={0.3} rotateOnHover={true} />
+                        </Suspense>
                     </div>
 
                     <h1 className="fe__heading">What can I help with?</h1>

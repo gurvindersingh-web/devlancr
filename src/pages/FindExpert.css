@@ -363,6 +363,101 @@
     padding-bottom: 16px;
 }
 
+/* =========================================================
+   Light theme
+   ========================================================= */
+[data-theme="light"] .fe__sidebar {
+    background: rgba(255, 255, 255, 0.78);
+    border-right-color: rgba(17, 24, 39, 0.08);
+}
+
+[data-theme="light"] .fe__sidebar-btn {
+    color: rgba(17, 24, 39, 0.55);
+}
+
+[data-theme="light"] .fe__sidebar-btn:hover {
+    color: rgba(17, 24, 39, 0.9);
+    background: rgba(37, 99, 235, 0.08);
+}
+
+[data-theme="light"] .fe__sidebar-btn--active {
+    color: rgba(17, 24, 39, 0.95);
+    background: rgba(37, 99, 235, 0.10);
+}
+
+[data-theme="light"] .fe__topbar-model {
+    color: rgba(17, 24, 39, 0.7);
+}
+
+[data-theme="light"] .fe__topbar-model:hover {
+    background: rgba(37, 99, 235, 0.06);
+    color: rgba(17, 24, 39, 0.9);
+}
+
+[data-theme="light"] .fe__topbar-btn {
+    color: rgba(17, 24, 39, 0.55);
+}
+
+[data-theme="light"] .fe__topbar-btn:hover {
+    color: rgba(17, 24, 39, 0.9);
+    background: rgba(37, 99, 235, 0.06);
+}
+
+[data-theme="light"] .fe__heading {
+    color: rgba(17, 24, 39, 0.92);
+}
+
+[data-theme="light"] .fe__suggestion {
+    color: rgba(17, 24, 39, 0.7);
+    background: rgba(255, 255, 255, 0.7);
+    border-color: rgba(17, 24, 39, 0.10);
+}
+
+[data-theme="light"] .fe__suggestion:hover {
+    color: rgba(17, 24, 39, 0.95);
+    background: rgba(37, 99, 235, 0.08);
+    border-color: rgba(37, 99, 235, 0.20);
+    box-shadow: 0 4px 20px rgba(17, 24, 39, 0.08);
+}
+
+[data-theme="light"] .fe__input-bar {
+    background: rgba(255, 255, 255, 0.86);
+    border-color: rgba(17, 24, 39, 0.12);
+}
+
+[data-theme="light"] .fe__input-bar:focus-within {
+    background: rgba(255, 255, 255, 0.96);
+    border-color: rgba(37, 99, 235, 0.28);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.10);
+}
+
+[data-theme="light"] .fe__input-attach,
+[data-theme="light"] .fe__input-icon-btn {
+    color: rgba(17, 24, 39, 0.55);
+}
+
+[data-theme="light"] .fe__input-attach:hover {
+    color: rgba(17, 24, 39, 0.9);
+    background: rgba(37, 99, 235, 0.08);
+}
+
+[data-theme="light"] .fe__input-field {
+    color: rgba(17, 24, 39, 0.92);
+}
+
+[data-theme="light"] .fe__input-field::placeholder {
+    color: rgba(107, 114, 128, 0.9);
+}
+
+[data-theme="light"] .fe__input-send {
+    background: rgba(37, 99, 235, 0.10);
+    color: rgba(37, 99, 235, 0.9);
+}
+
+[data-theme="light"] .fe__footer-text {
+    color: rgba(17, 24, 39, 0.45);
+}
+
 /* ── Ambient Background Orbs ── */
 .fe__ambient {
     position: fixed;

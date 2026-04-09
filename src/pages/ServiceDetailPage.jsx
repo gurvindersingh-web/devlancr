@@ -1,7 +1,9 @@
+import { useEffect, useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import ProfileCard from '../components/ProfileCard';
 import ClientCard from '../components/ClientCard';
+import JsonLd from '../components/JsonLd';
 import { FREELANCERS } from '../data/freelancers';
 import { CLIENTS } from '../data/clients';
 import './ServiceDetail.css';
@@ -305,8 +307,30 @@ export default function ServiceDetailPage() {
     // Attempt lookup with formatted name, fallback to raw decoded
     const categoryData = CATEGORY_DATA[displayName] || CATEGORY_DATA[decodedName] || DEFAULT_CATEGORY;
 
+    // SEO: Update page title dynamically
+    useEffect(() => {
+        document.title = `${displayName} | Verilance — Freelance Marketplace`;
+        return () => { document.title = 'Verilance — Freelance Marketplace'; };
+    }, [displayName]);
+
+    // SEO: Structured data for search engines
+    const jsonLdData = useMemo(() => ({
+        '@context': 'https://schema.org',
+        '@type': 'Service',
+        'name': displayName,
+        'description': categoryData.tagline,
+        'provider': {
+            '@type': 'Organization',
+            'name': 'Verilance',
+            'url': 'https://verilance.com'
+        },
+        'serviceType': displayName,
+        'areaServed': 'Worldwide',
+    }), [displayName, categoryData.tagline]);
+
     return (
         <>
+            <JsonLd data={jsonLdData} />
             <Navbar />
             <main className="sd__page">
                 {/* Hero Banner */}
