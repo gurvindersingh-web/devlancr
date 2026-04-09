@@ -1,8 +1,10 @@
 import { useNavigate } from 'react-router-dom';
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect, lazy, Suspense } from 'react';
 import Navbar from '../components/Navbar';
-import Orb from '../component/Orb';
 import './Marketplace.css';
+
+// ✅ Lazy-load heavy WebGL component — only used in promo section below the fold
+const Orb = lazy(() => import('../component/Orb'));
 
 const CATEGORIES_NAV = [
     'Trending 🔥', 'Graphics & Design', 'Programming & Tech', 'Digital Marketing',
@@ -471,7 +473,9 @@ function MarketplacePage() {
                     </div>
                     <div className="mp__promo-visual">
                         <div className="mp__promo-orb-wrapper">
-                            <Orb hue={260} hoverIntensity={0.5} />
+                            <Suspense fallback={<div style={{ width: '100%', height: '100%', background: 'radial-gradient(circle, rgba(139,92,246,0.3) 0%, transparent 70%)' }} />}>
+                                <Orb hue={260} hoverIntensity={0.5} />
+                            </Suspense>
                         </div>
                         <img src="/images/popular/vibe-coding.png" alt="Vibe coding" />
                     </div>

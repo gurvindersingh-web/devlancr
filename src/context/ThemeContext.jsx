@@ -5,7 +5,8 @@ const ThemeContext = createContext();
 export function ThemeProvider({ children }) {
     const [isDark, setIsDark] = useState(() => {
         const saved = localStorage.getItem('verilance-theme');
-        return saved ? saved === 'dark' : true;
+        // Default to light theme for the app (dark remains available + persisted)
+        return saved ? saved === 'dark' : false;
     });
 
     useEffect(() => {
@@ -22,6 +23,7 @@ export function ThemeProvider({ children }) {
     );
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useTheme() {
     const context = useContext(ThemeContext);
     if (!context) throw new Error('useTheme must be used within ThemeProvider');
