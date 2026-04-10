@@ -3,6 +3,8 @@ import { useInView } from '../hooks/useInView';
 import { useReducedMotion } from '../hooks/useReducedMotion';
 import Navbar from '../components/Navbar';
 import HeroSection from '../components/HeroSection';
+import HomeSections from '../components/HomeSections';
+import Footer from '../components/Footer';
 
 // ✅ Lazy-load heavy WebGL components — not in initial bundle
 const SplineScene = lazy(() => import('../components/SplineScene'));
@@ -71,6 +73,12 @@ function LandingPage() {
 
             {/* Hero */}
             <HeroSection />
+
+            {/* Homepage Sections — below fold */}
+            <HomeSections />
+
+            {/* Footer */}
+            <Footer />
         </div>
     );
 }
