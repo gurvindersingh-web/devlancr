@@ -24,13 +24,13 @@ function HeroSection() {
 
     // Role toggle persisted to localStorage
     const [role, setRole] = useState(() => {
-        return localStorage.getItem('verilance-role') || 'client';
+        return localStorage.getItem('verilancer-role') || 'client';
     });
 
     const handleRoleChange = useCallback((newRole) => {
         setRole(newRole);
-        localStorage.setItem('verilance-role', newRole);
-        window.dispatchEvent(new Event('verilance-role-change'));
+        localStorage.setItem('verilancer-role', newRole);
+        window.dispatchEvent(new Event('verilancer-role-change'));
     }, []);
 
     const isClient = role === 'client';
@@ -63,7 +63,7 @@ function HeroSection() {
                 <h1 className="hero__title">
                     {isClient ? (
                         <>Clients find 
-                        talent everywhere.{' '}<br /><span className="highlight">Why not on Verilance?</span></>
+                        talent everywhere.{' '}<br /><span className="highlight">Why not on Verilancer?</span></>
                     ) : (
                         <>Find projects that{' '}<br /><span className="highlight">match your talent.</span></>
                     )}

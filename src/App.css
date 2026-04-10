@@ -676,7 +676,7 @@
 }
 
 /* =========================================
-   VERILANCE PRO SECTION
+   VERILANCER PRO SECTION
    ========================================= */
 .devpro {
   position: relative;
@@ -1865,7 +1865,7 @@
     font-size: 0.9rem;
   }
 
-  /* Verilance Pro responsive */
+  /* Verilancer Pro responsive */
   .devpro__inner {
     grid-template-columns: 1fr;
     padding: var(--space-8) var(--space-6);
@@ -1995,7 +1995,7 @@
   background: rgba(255, 255, 255, 0.07) !important;
 }
 
-/* ── Verilance Pro Dropdown ── */
+/* ── Verilancer Pro Dropdown ── */
 .navbar__dropdown {
   position: relative;
 }
@@ -2492,6 +2492,133 @@
   color: #fff;
   text-decoration: underline;
   text-underline-offset: 4px;
+}
+
+/* =========================================
+   LIGHT THEME — HOME SECTIONS
+   ========================================= */
+
+/* Section backgrounds */
+[data-theme="light"] .hs-section {
+  background: #f8f9fc;
+}
+
+[data-theme="light"] .hs-section--stats {
+  background: linear-gradient(135deg, #eef2ff 0%, #faf5ff 100%);
+}
+
+[data-theme="light"] .hs-section--cta {
+  background: linear-gradient(135deg, #f0fdf4 0%, #f5f3ff 50%, #eff6ff 100%);
+}
+
+/* Headings */
+[data-theme="light"] .hs-heading {
+  color: #111827;
+}
+
+[data-theme="light"] .hs-subheading {
+  color: #6b7280;
+}
+
+/* Cards */
+[data-theme="light"] .hs-card {
+  background: #fff;
+  border-color: #e5e7eb;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+[data-theme="light"] .hs-card:hover {
+  border-color: #c7d2fe;
+  box-shadow: 0 10px 25px rgba(99, 102, 241, 0.08), 0 4px 10px rgba(0, 0, 0, 0.04);
+}
+
+[data-theme="light"] .hs-card-step {
+  color: rgba(99, 102, 241, 0.3);
+}
+
+[data-theme="light"] .hs-card h3 {
+  color: #111827;
+}
+
+[data-theme="light"] .hs-card p {
+  color: #6b7280;
+}
+
+/* Feature items */
+[data-theme="light"] .hs-feature {
+  background: #fff;
+  border-color: #e5e7eb;
+}
+
+[data-theme="light"] .hs-feature:hover {
+  border-color: #c7d2fe;
+  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.06);
+}
+
+[data-theme="light"] .hs-feature-icon {
+  background: #eef2ff;
+  color: #6366f1;
+}
+
+[data-theme="light"] .hs-feature h3 {
+  color: #111827;
+}
+
+[data-theme="light"] .hs-feature p {
+  color: #6b7280;
+}
+
+/* Testimonials */
+[data-theme="light"] .hs-testimonial {
+  background: #fff;
+  border-color: #e5e7eb;
+}
+
+[data-theme="light"] .hs-testimonial:hover {
+  border-color: #c7d2fe;
+}
+
+[data-theme="light"] .hs-testimonial blockquote {
+  color: #374151;
+}
+
+[data-theme="light"] .hs-testimonial-author {
+  color: #111827;
+}
+
+[data-theme="light"] .hs-testimonial-role {
+  color: #9ca3af;
+}
+
+/* Stats */
+[data-theme="light"] .hs-stat-value {
+  color: #111827;
+}
+
+[data-theme="light"] .hs-stat-label {
+  color: #6b7280;
+}
+
+/* CTA Section */
+[data-theme="light"] .hs-cta-glow {
+  opacity: 0.5;
+}
+
+[data-theme="light"] .hs-cta-btn {
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.2);
+}
+
+[data-theme="light"] .hs-cta-btn:hover {
+  box-shadow: 0 8px 30px rgba(99, 102, 241, 0.3);
+}
+
+[data-theme="light"] .hs-cta-link {
+  color: #6b7280;
+}
+
+[data-theme="light"] .hs-cta-link:hover {
+  color: #111827;
 }
 
 /* ── Responsive mobile polish ── */

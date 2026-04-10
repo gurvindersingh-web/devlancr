@@ -309,8 +309,8 @@ export default function ServiceDetailPage() {
 
     // SEO: Update page title dynamically
     useEffect(() => {
-        document.title = `${displayName} | Verilance — Freelance Marketplace`;
-        return () => { document.title = 'Verilance — Freelance Marketplace'; };
+        document.title = `${displayName} | Verilancer — Freelance Marketplace`;
+        return () => { document.title = 'Verilancer — Freelance Marketplace'; };
     }, [displayName]);
 
     // SEO: Structured data for search engines
@@ -321,8 +321,8 @@ export default function ServiceDetailPage() {
         'description': categoryData.tagline,
         'provider': {
             '@type': 'Organization',
-            'name': 'Verilance',
-            'url': 'https://verilance.com'
+            'name': 'Verilancer',
+            'url': 'https://verilancer.com'
         },
         'serviceType': displayName,
         'areaServed': 'Worldwide',

@@ -28,7 +28,7 @@ function FinalCTA() {
                 <h2 className="final-cta__title">
                     Build your career. <br />
                     Build your team. <br />
-                    Build on <span className="gradient-text">Verilance</span>.
+                    Build on <span className="gradient-text">Verilancer</span>.
                 </h2>
                 <p className="final-cta__subtitle">
                     Join thousands of clients and freelancers who are already building the future together.
