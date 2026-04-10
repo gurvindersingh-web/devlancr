@@ -520,6 +520,756 @@
     }
 }
 
+/* =========================================
+   PREMIUM BADGE
+   ========================================= */
+.fe__premium-badge {
+    padding: 4px 12px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #f5c542;
+    background: linear-gradient(135deg, rgba(245, 197, 66, 0.12), rgba(236, 72, 153, 0.08));
+    border: 1px solid rgba(245, 197, 66, 0.25);
+    border-radius: var(--radius-full);
+    animation: feShimmer 3s ease-in-out infinite;
+}
+
+@keyframes feShimmer {
+    0%, 100% { opacity: 0.85; }
+    50% { opacity: 1; }
+}
+
+/* =========================================
+   SRS COST ESTIMATOR
+   ========================================= */
+.fe__srs-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    padding: 0 24px 40px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(139, 92, 246, 0.2) transparent;
+}
+
+/* ── Upload View ── */
+.fe__srs-upload-view {
+    max-width: 680px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding-top: 48px;
+    animation: feFadeIn 0.5s ease-out;
+}
+
+@keyframes feFadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fe__srs-header {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.fe__srs-icon-wrap {
+    width: 80px;
+    height: 80px;
+    border-radius: 24px;
+    background: rgba(139, 92, 246, 0.08);
+    border: 1px solid rgba(139, 92, 246, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 4px;
+}
+
+.fe__srs-title {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.92);
+    letter-spacing: -0.02em;
+}
+
+.fe__srs-desc {
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 0.9rem;
+    max-width: 480px;
+    line-height: 1.6;
+}
+
+/* ── Dropzone ── */
+.fe__srs-dropzone {
+    width: 100%;
+    padding: 40px 24px;
+    border: 2px dashed rgba(139, 92, 246, 0.2);
+    border-radius: 20px;
+    background: rgba(139, 92, 246, 0.03);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.fe__srs-dropzone:hover,
+.fe__srs-dropzone--drag {
+    border-color: rgba(139, 92, 246, 0.45);
+    background: rgba(139, 92, 246, 0.06);
+    box-shadow: 0 0 40px rgba(139, 92, 246, 0.08);
+}
+
+.fe__srs-dropzone-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    background: rgba(139, 92, 246, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(139, 92, 246, 0.7);
+}
+
+.fe__srs-filename {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: rgba(139, 92, 246, 0.9);
+}
+
+.fe__srs-drop-text {
+    font-size: 0.92rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 500;
+}
+
+.fe__srs-drop-hint {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* ── Divider ── */
+.fe__srs-divider {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.fe__srs-divider::before,
+.fe__srs-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.fe__srs-divider span {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.25);
+    white-space: nowrap;
+}
+
+/* ── Textarea ── */
+.fe__srs-textarea {
+    width: 100%;
+    padding: 16px 20px;
+    background: rgba(50, 50, 68, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    color: rgba(255, 255, 255, 0.88);
+    font-size: 0.85rem;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    line-height: 1.6;
+    resize: vertical;
+    outline: none;
+    transition: all 0.3s ease;
+    min-height: 160px;
+}
+
+.fe__srs-textarea::placeholder {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.fe__srs-textarea:focus {
+    border-color: rgba(139, 92, 246, 0.3);
+    background: rgba(50, 50, 68, 0.55);
+    box-shadow: 0 0 30px rgba(139, 92, 246, 0.06);
+}
+
+/* ── Error ── */
+.fe__srs-error {
+    color: #ef4444;
+    font-size: 0.82rem;
+    background: rgba(239, 68, 68, 0.08);
+    border: 1px solid rgba(239, 68, 68, 0.15);
+    border-radius: 12px;
+    padding: 10px 16px;
+    width: 100%;
+    text-align: center;
+}
+
+/* ── Actions ── */
+.fe__srs-actions {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.fe__srs-analyze-btn {
+    padding: 16px 40px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-family: inherit;
+    color: #fff;
+    background: linear-gradient(135deg, #8b5cf6, #6366f1);
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(139, 92, 246, 0.25);
+}
+
+.fe__srs-analyze-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(139, 92, 246, 0.35);
+    filter: brightness(1.1);
+}
+
+.fe__srs-analyze-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.fe__srs-spinner {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+}
+
+/* =========================================
+   SRS RESULTS
+   ========================================= */
+.fe__srs-results {
+    max-width: 900px;
+    width: 100%;
+    margin: 0 auto;
+    padding-top: 24px;
+    animation: feFadeIn 0.6s ease-out;
+}
+
+.fe__srs-results-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 28px;
+}
+
+.fe__srs-results-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.92);
+}
+
+.fe__srs-reset-btn {
+    padding: 8px 20px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 999px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.3s ease;
+}
+
+.fe__srs-reset-btn:hover {
+    color: #fff;
+    background: rgba(139, 92, 246, 0.15);
+    border-color: rgba(139, 92, 246, 0.3);
+}
+
+.fe__srs-results-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-bottom: 60px;
+}
+
+/* ── Result Card Base ── */
+.fe__result-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 20px;
+    padding: 28px;
+    backdrop-filter: blur(12px);
+    transition: border-color 0.3s ease;
+}
+
+.fe__result-card:hover {
+    border-color: rgba(139, 92, 246, 0.18);
+}
+
+.fe__card-heading {
+    font-size: 1rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 20px;
+}
+
+/* ── Cost Overview ── */
+.fe__result-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+.fe__result-icon {
+    font-size: 2rem;
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    background: rgba(139, 92, 246, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.fe__result-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.92);
+    margin-bottom: 4px;
+}
+
+.fe__result-subtitle {
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.45);
+    line-height: 1.5;
+}
+
+.fe__cost-hero {
+    text-align: center;
+    padding: 32px 0;
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.06), rgba(99, 102, 241, 0.04));
+    border-radius: 16px;
+    margin-bottom: 20px;
+}
+
+.fe__cost-label {
+    display: block;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: rgba(255, 255, 255, 0.35);
+    margin-bottom: 12px;
+}
+
+.fe__cost-range {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 12px;
+}
+
+.fe__cost-min,
+.fe__cost-max {
+    font-size: 2.2rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    background: linear-gradient(135deg, #8b5cf6, #6366f1, #ec4899);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.fe__cost-sep {
+    color: rgba(255, 255, 255, 0.2);
+    font-size: 1.4rem;
+}
+
+.fe__cost-currency {
+    display: block;
+    margin-top: 8px;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.fe__meta-row {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.fe__meta-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 999px;
+}
+
+.fe__meta-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+/* ── Phases ── */
+.fe__phases-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.fe__phase-item {
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 14px;
+    transition: border-color 0.3s ease;
+}
+
+.fe__phase-item:hover {
+    border-color: rgba(139, 92, 246, 0.15);
+}
+
+.fe__phase-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.fe__phase-num {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: rgba(139, 92, 246, 0.3);
+    flex-shrink: 0;
+    line-height: 1;
+    min-width: 36px;
+}
+
+.fe__phase-info {
+    flex: 1;
+}
+
+.fe__phase-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.88);
+    margin-bottom: 4px;
+}
+
+.fe__phase-desc {
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.4);
+    line-height: 1.5;
+}
+
+.fe__phase-cost {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: rgba(139, 92, 246, 0.8);
+    white-space: nowrap;
+    text-align: right;
+}
+
+.fe__phase-weeks {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.3);
+    margin-top: 2px;
+}
+
+.fe__phase-tasks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 12px;
+    padding-left: 52px;
+}
+
+.fe__phase-task-chip {
+    padding: 4px 10px;
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 6px;
+}
+
+/* ── Team ── */
+.fe__team-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.fe__team-member {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    transition: border-color 0.2s ease;
+}
+
+.fe__team-member:hover {
+    border-color: rgba(139, 92, 246, 0.15);
+}
+
+.fe__team-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+}
+
+.fe__team-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.fe__team-role {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.fe__team-detail {
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.35);
+}
+
+.fe__team-cost {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: rgba(139, 92, 246, 0.75);
+}
+
+/* ── Tech Stack ── */
+.fe__tech-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.fe__tech-chip {
+    padding: 8px 16px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: rgba(139, 92, 246, 0.85);
+    background: rgba(139, 92, 246, 0.08);
+    border: 1px solid rgba(139, 92, 246, 0.15);
+    border-radius: 999px;
+    transition: all 0.2s ease;
+}
+
+.fe__tech-chip:hover {
+    background: rgba(139, 92, 246, 0.14);
+    transform: translateY(-1px);
+}
+
+/* ── Risks ── */
+.fe__risks-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.fe__risk-item {
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.fe__risk-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.fe__risk-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.fe__risk-text {
+    flex: 1;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.78);
+}
+
+.fe__risk-badge {
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.fe__risk-mitigation {
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.38);
+    line-height: 1.5;
+    padding-left: 18px;
+}
+
+/* ── Timeline ── */
+.fe__timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+    padding-left: 20px;
+}
+
+.fe__timeline::before {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: linear-gradient(to bottom, rgba(139, 92, 246, 0.4), rgba(139, 92, 246, 0.08));
+    border-radius: 1px;
+}
+
+.fe__milestone {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 10px 0;
+    position: relative;
+}
+
+.fe__milestone-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #8b5cf6;
+    border: 2px solid rgba(139, 92, 246, 0.3);
+    position: absolute;
+    left: -20px;
+    flex-shrink: 0;
+    box-shadow: 0 0 10px rgba(139, 92, 246, 0.3);
+}
+
+.fe__milestone-text {
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.65);
+}
+
+/* ── Recommendations ── */
+.fe__rec-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.fe__rec-item {
+    padding: 12px 16px;
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.65);
+    background: rgba(16, 185, 129, 0.04);
+    border: 1px solid rgba(16, 185, 129, 0.1);
+    border-radius: 10px;
+    line-height: 1.5;
+}
+
+.fe__rec-item::before {
+    content: '→ ';
+    color: #10b981;
+    font-weight: 600;
+}
+
+/* =========================================
+   LIGHT THEME — SRS
+   ========================================= */
+[data-theme="light"] .fe__srs-title {
+    color: rgba(17, 24, 39, 0.92);
+}
+
+[data-theme="light"] .fe__srs-desc {
+    color: rgba(17, 24, 39, 0.55);
+}
+
+[data-theme="light"] .fe__srs-dropzone {
+    border-color: rgba(37, 99, 235, 0.2);
+    background: rgba(37, 99, 235, 0.03);
+}
+
+[data-theme="light"] .fe__srs-dropzone:hover {
+    border-color: rgba(37, 99, 235, 0.35);
+    background: rgba(37, 99, 235, 0.05);
+}
+
+[data-theme="light"] .fe__srs-textarea {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: rgba(17, 24, 39, 0.1);
+    color: rgba(17, 24, 39, 0.88);
+}
+
+[data-theme="light"] .fe__result-card {
+    background: rgba(255, 255, 255, 0.7);
+    border-color: rgba(17, 24, 39, 0.08);
+}
+
+[data-theme="light"] .fe__result-title,
+[data-theme="light"] .fe__card-heading,
+[data-theme="light"] .fe__srs-results-title {
+    color: rgba(17, 24, 39, 0.9);
+}
+
+[data-theme="light"] .fe__phase-name,
+[data-theme="light"] .fe__team-role,
+[data-theme="light"] .fe__risk-text {
+    color: rgba(17, 24, 39, 0.85);
+}
+
 /* ── Responsive ── */
 @media (max-width: 768px) {
     .fe__sidebar {
@@ -540,5 +1290,31 @@
 
     .fe__input-area {
         padding: 0 16px 24px;
+    }
+
+    .fe__srs-upload-view {
+        padding-top: 24px;
+    }
+
+    .fe__srs-title {
+        font-size: 1.4rem;
+    }
+
+    .fe__cost-min,
+    .fe__cost-max {
+        font-size: 1.6rem;
+    }
+
+    .fe__phase-header {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .fe__phase-cost {
+        text-align: left;
+    }
+
+    .fe__phase-tasks {
+        padding-left: 0;
     }
 }

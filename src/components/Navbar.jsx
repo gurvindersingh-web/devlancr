@@ -101,7 +101,7 @@ function Navbar({ showSearch = true }) {
                     </button>
                 </li>
                 <li>
-                    <button className="navbar__link-btn" onClick={() => navigate('/find-expert')}>Become a Seller</button>
+                    <button className="navbar__link-btn navbar__seller-cta" onClick={() => navigate('/find-expert')}>Become a Seller</button>
                 </li>
             </ul>
 

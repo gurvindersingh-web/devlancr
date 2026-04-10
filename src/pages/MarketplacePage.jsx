@@ -501,26 +501,7 @@ function MarketplacePage() {
                 </div>
             </section>
 
-            {/* Verilance Pro */}
-            <section className="mp__pro ag-reveal">
-                <div className="mp__pro-inner">
-                    <div className="mp__pro-text">
-                        <span className="mp__pro-label">verilance pro</span>
-                        <h2 className="mp__pro-title">High-quality work,<br />or your <strong>money back</strong></h2>
-                        <p className="mp__pro-desc">
-                            On Verilance Pro, you can bring your vision to life risk free. Every
-                            project with vetted Pro freelancers is backed by our money-back
-                            guarantee, so you can accomplish any high-stakes project with total confidence.
-                        </p>
-                        <button className="btn mp__pro-btn">Try now</button>
-                    </div>
-                    <div className="mp__pro-visual">
-                        <div className="mp__pro-phone">
-                            <span>Money-back<br />guarantee</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
+
 
             {/* Make It Happen */}
             <section className="mp__features ag-reveal">
