@@ -4,14 +4,14 @@ const ThemeContext = createContext();
 
 export function ThemeProvider({ children }) {
     const [isDark, setIsDark] = useState(() => {
-        const saved = localStorage.getItem('verilance-theme');
+        const saved = localStorage.getItem('verilancer-theme');
         // Default to light theme for the app (dark remains available + persisted)
         return saved ? saved === 'dark' : false;
     });
 
     useEffect(() => {
         document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
-        localStorage.setItem('verilance-theme', isDark ? 'dark' : 'light');
+        localStorage.setItem('verilancer-theme', isDark ? 'dark' : 'light');
     }, [isDark]);
 
     const toggleTheme = () => setIsDark((prev) => !prev);

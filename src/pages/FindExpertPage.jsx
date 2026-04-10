@@ -5,8 +5,8 @@ import './FindExpert.css';
 // ✅ Lazy-load WebGL component
 const Orb = lazy(() => import('../component/Orb'));
 
-const GEMINI_API_KEY = 'AIzaSyAwBWvZHjHqkinfC4dNDxzHUWNwlDnnHDg';
-const GEMINI_MODEL = 'gemini-2.0-flash';
+const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
+const GEMINI_MODEL = 'gemini-flash-latest';
 const GEMINI_ENDPOINT = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_API_KEY}`;
 
 const SUGGESTIONS = [
@@ -66,7 +66,21 @@ Return your response in the following JSON structure (and ONLY valid JSON, no ma
 SRS Document:
 `;
 
-async function readFileAsText(file) {
+/* Read file as base64 for binary formats (PDF, DOCX) */
+function readFileAsBase64(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            const base64 = e.target.result.split(',')[1]; // strip data:...;base64, prefix
+            resolve(base64);
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+    });
+}
+
+/* Read file as plain text for text-based formats */
+function readFileAsText(file) {
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
         reader.onload = (e) => resolve(e.target.result);
@@ -75,14 +89,38 @@ async function readFileAsText(file) {
     });
 }
 
-async function analyzeWithGemini(srsText) {
+/* Detect if file is a binary format that needs base64 */
+function isBinaryFile(file) {
+    const binaryTypes = [
+        'application/pdf',
+        'application/msword',
+        'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+    ];
+    return binaryTypes.includes(file.type) || /\.(pdf|doc|docx)$/i.test(file.name);
+}
+
+/* Analyze with Gemini — supports both text and binary (base64) inputs */
+async function analyzeWithGemini({ text, fileBase64, fileMimeType }) {
+    const parts = [{ text: SRS_PROMPT }];
+
+    if (fileBase64 && fileMimeType) {
+        // Send binary file as inline base64 data — Gemini reads PDFs natively
+        parts.push({
+            inlineData: {
+                mimeType: fileMimeType,
+                data: fileBase64,
+            }
+        });
+    } else if (text) {
+        // Append plain text SRS content
+        parts[0].text += text;
+    }
+
     const response = await fetch(GEMINI_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-            contents: [{
-                parts: [{ text: SRS_PROMPT + srsText }]
-            }],
+            contents: [{ parts }],
             generationConfig: {
                 temperature: 0.3,
                 maxOutputTokens: 4096,
@@ -91,17 +129,29 @@ async function analyzeWithGemini(srsText) {
     });
 
     if (!response.ok) {
-        const err = await response.text();
-        throw new Error(`API Error: ${response.status} — ${err}`);
+        const errStr = await response.text();
+        try {
+            const errJson = JSON.parse(errStr);
+            if (response.status === 429) {
+                throw new Error('API Rate Limit Exceeded: The free tier quota for the AI model has been reached. Please try again later.');
+            }
+            if (errJson?.error?.message) {
+                throw new Error(`API Error: ${errJson.error.message}`);
+            }
+        } catch (e) {
+            // Ignore parse errors, just fallback below
+            if (e.message.includes('API Rate Limit Exceeded') || e.message.includes('API Error:')) throw e;
+        }
+        throw new Error(`API Error: ${response.status} — ${errStr}`);
     }
 
     const data = await response.json();
-    const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
+    const resultText = data.candidates?.[0]?.content?.parts?.[0]?.text;
 
-    if (!text) throw new Error('No response from AI');
+    if (!resultText) throw new Error('No response from AI');
 
     // Strip markdown fences if present
-    const cleaned = text.replace(/```json\s*/g, '').replace(/```\s*/g, '').trim();
+    const cleaned = resultText.replace(/```json\s*/g, '').replace(/```\s*/g, '').trim();
     return JSON.parse(cleaned);
 }
 
@@ -275,6 +325,7 @@ function FindExpertPage() {
     const [activeTab, setActiveTab] = useState('chat'); // 'chat' | 'srs'
     const [srsText, setSrsText] = useState('');
     const [fileName, setFileName] = useState('');
+    const [fileData, setFileData] = useState(null); // { base64, mimeType } for binary files
     const [loading, setLoading] = useState(false);
     const [result, setResult] = useState(null);
     const [error, setError] = useState('');
@@ -293,23 +344,33 @@ function FindExpertPage() {
     };
 
     const handleFileUpload = async (e) => {
-        const file = e.target.files[0];
-        if (!file) return;
+        const file = e.target.files?.[0] || e;
+        if (!file || !file.name) return;
 
         setFileName(file.name);
         setError('');
+        setFileData(null);
+        setSrsText('');
 
         try {
-            const text = await readFileAsText(file);
-            setSrsText(text);
+            if (isBinaryFile(file)) {
+                // Binary file (PDF, DOC, DOCX) — read as base64 for Gemini inline data
+                const base64 = await readFileAsBase64(file);
+                const mimeType = file.type || 'application/pdf';
+                setFileData({ base64, mimeType });
+                setSrsText(`[Binary file: ${file.name} — will be sent directly to AI for analysis]`);
+            } else {
+                // Text file (.txt, .md) — read as plain text
+                const text = await readFileAsText(file);
+                setSrsText(text);
+            }
         } catch {
-            setError('Could not read file. Please try a .txt or .pdf file.');
+            setError('Could not read file. Please try again.');
         }
     };
 
     const handleAnalyzeSRS = async () => {
-        const text = srsText.trim();
-        if (!text) {
+        if (!fileData && !srsText.trim()) {
             setError('Please upload an SRS document or paste its content.');
             return;
         }
@@ -319,11 +380,15 @@ function FindExpertPage() {
         setResult(null);
 
         try {
-            const data = await analyzeWithGemini(text);
+            const data = await analyzeWithGemini({
+                text: fileData ? null : srsText.trim(),
+                fileBase64: fileData?.base64 || null,
+                fileMimeType: fileData?.mimeType || null,
+            });
             setResult(data);
         } catch (err) {
             console.error(err);
-            setError('Failed to analyze SRS. Please check your document and try again.');
+            setError(err.message || 'Failed to analyze SRS. Please check your document and try again.');
         } finally {
             setLoading(false);
         }
@@ -332,6 +397,7 @@ function FindExpertPage() {
     const handleReset = () => {
         setSrsText('');
         setFileName('');
+        setFileData(null);
         setResult(null);
         setError('');
         if (fileInputRef.current) fileInputRef.current.value = '';
@@ -390,7 +456,7 @@ function FindExpertPage() {
                 {/* Top Bar */}
                 <div className="fe__topbar">
                     <div className="fe__topbar-model">
-                        {activeTab === 'srs' ? '📄 SRS Cost Estimator · Premium AI' : 'Verilance Expert'}
+                        {activeTab === 'srs' ? '📄 SRS Cost Estimator · Premium AI' : 'Verilancer Expert'}
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                             <polyline points="6 9 12 15 18 9" />
                         </svg>
@@ -451,7 +517,7 @@ function FindExpertPage() {
                                 </div>
                             </form>
                             <p className="fe__footer-text">
-                                Verilance AI can help you find the perfect expert for your project.
+                                Verilancer AI can help you find the perfect expert for your project.
                             </p>
                         </div>
                     </>
@@ -523,18 +589,32 @@ function FindExpertPage() {
                                     )}
                                 </div>
 
-                                {/* Or paste text */}
-                                <div className="fe__srs-divider">
-                                    <span>or paste your SRS content</span>
-                                </div>
+                                {/* Or paste text — hidden when binary file is uploaded */}
+                                {fileData ? (
+                                    <div className="fe__srs-file-ready">
+                                        <div className="fe__srs-file-ready-icon">✅</div>
+                                        <p className="fe__srs-file-ready-text">
+                                            <strong>{fileName}</strong> is ready for analysis
+                                        </p>
+                                        <p className="fe__srs-file-ready-hint">
+                                            The document will be sent directly to Gemini AI for parsing
+                                        </p>
+                                    </div>
+                                ) : (
+                                    <>
+                                        <div className="fe__srs-divider">
+                                            <span>or paste your SRS content</span>
+                                        </div>
 
-                                <textarea
-                                    className="fe__srs-textarea"
-                                    placeholder="Paste your Software Requirements Specification here..."
-                                    value={srsText}
-                                    onChange={(e) => setSrsText(e.target.value)}
-                                    rows={8}
-                                />
+                                        <textarea
+                                            className="fe__srs-textarea"
+                                            placeholder="Paste your Software Requirements Specification here..."
+                                            value={srsText}
+                                            onChange={(e) => setSrsText(e.target.value)}
+                                            rows={8}
+                                        />
+                                    </>
+                                )}
 
                                 {error && <p className="fe__srs-error">⚠ {error}</p>}
 
@@ -542,7 +622,7 @@ function FindExpertPage() {
                                     <button
                                         className="fe__srs-analyze-btn"
                                         onClick={handleAnalyzeSRS}
-                                        disabled={loading || !srsText.trim()}
+                                        disabled={loading || (!fileData && !srsText.trim())}
                                     >
                                         {loading ? (
                                             <>

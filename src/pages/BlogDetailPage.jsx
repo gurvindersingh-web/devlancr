@@ -152,7 +152,7 @@ function BlogDetailPage() {
           <svg className="blog-detail__published-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M12 20h9" /><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
           </svg>
-          Published on Verilancer | Empowering Student Freelancers
+          Published on Verilancerr | Empowering Student Freelancers
         </div>
 
         {/* CTA */}
@@ -162,7 +162,7 @@ function BlogDetailPage() {
             Begin Your Freelance Journey Today
           </h3>
           <p className="blog-detail__cta-desc">
-            Join Verilancer and connect with real clients, build your portfolio, and earn while you learn.
+            Join Verilancerr and connect with real clients, build your portfolio, and earn while you learn.
           </p>
           <button
             className="blog-detail__cta-btn"

@@ -133,7 +133,7 @@ function WhatWeDoSection() {
             <div className="whatwedo__desc-block" ref={descRef}>
                 <div className="whatwedo__desc-glow" />
                 <p className="whatwedo__description">
-                    Verilance is a next-generation freelancing platform that connects clients with
+                    Verilancer is a next-generation freelancing platform that connects clients with
                     talented student professionals for real-world projects. We make hiring fast,
                     secure, and intelligent through smart talent matching, seamless collaboration
                     tools, and escrow-based payments. Our mission is to empower students with

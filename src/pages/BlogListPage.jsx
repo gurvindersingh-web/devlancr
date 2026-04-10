@@ -21,7 +21,7 @@ function BlogListPage() {
             Insights &amp; Stories
           </div>
           <h1 className="blog-page__title">
-            The Verilancer <span className="gradient-text">Blog</span>
+            The Verilancerr <span className="gradient-text">Blog</span>
           </h1>
           <p className="blog-page__subtitle">
             Insights, strategies, and stories for student freelancers building real careers — one project at a time.

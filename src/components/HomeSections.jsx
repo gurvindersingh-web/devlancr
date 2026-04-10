@@ -36,15 +36,15 @@ const features = [
     { Icon: Sparkles, title: 'AI-Powered Matching', desc: 'Instantly pairs clients with freelancers based on skills, budget, and project type using our trained matching engine.' },
     { Icon: Landmark, title: 'Milestone Payments', desc: 'Funds are held securely in escrow and released only when work is approved — no disputes, no delays.' },
     { Icon: MessageSquare, title: 'Real-Time Collaboration', desc: 'Built-in chat, file sharing, and live project boards powered by WebSockets keep every project on track.' },
-    { Icon: ShieldCheck, title: 'Verified Freelancers', desc: 'Every freelancer on Verilance is skill-verified and review-backed. No guesswork when hiring.' },
+    { Icon: ShieldCheck, title: 'Verified Freelancers', desc: 'Every freelancer on Verilancer is skill-verified and review-backed. No guesswork when hiring.' },
     { Icon: FileText, title: 'Smart Proposals', desc: 'Freelancers submit structured proposals with timelines and pricing — clients compare and decide with full context.' },
     { Icon: Lock, title: 'JWT-Secured Accounts', desc: 'Enterprise-grade JWT authentication and encrypted transactions protect every user on the platform.' },
 ];
 
 const testimonials = [
-    { quote: 'Verilance matched me with a backend dev in under 10 minutes. The milestone system gave me total peace of mind.', name: 'Sarah K.', role: 'Product Lead at Stackora' },
-    { quote: "I've tried every freelance platform. Verilance is the only one that sends me projects I actually want to work on.", name: 'Arjun M.', role: 'Full-Stack Developer' },
-    { quote: "The AI matching isn't a gimmick — it genuinely understands what we need. We've hired 4 freelancers through Verilance this quarter.", name: 'Lena B.', role: 'CTO at Formflow' },
+    { quote: 'Verilancer matched me with a backend dev in under 10 minutes. The milestone system gave me total peace of mind.', name: 'Sarah K.', role: 'Product Lead at Stackora' },
+    { quote: "I've tried every freelance platform. Verilancer is the only one that sends me projects I actually want to work on.", name: 'Arjun M.', role: 'Full-Stack Developer' },
+    { quote: "The AI matching isn't a gimmick — it genuinely understands what we need. We've hired 4 freelancers through Verilancer this quarter.", name: 'Lena B.', role: 'CTO at Formflow' },
 ];
 
 const stats = [
@@ -195,19 +195,19 @@ function FinalCtaBanner({ isClient }) {
                 <p className="hs-subheading">
                     {isClient
                         ? 'Post your first project for free and get matched with top freelancers within minutes.'
-                        : 'Join 50,000+ freelancers already growing their careers on Verilance.'}
+                        : 'Join 50,000+ freelancers already growing their careers on Verilancer.'}
                 </p>
                 <div className="hs-cta-actions">
                     <button
                         className="hs-cta-btn"
                         style={{ background: accent }}
-                        onClick={() => navigate('/')}
+                        onClick={() => navigate('/marketplace')}
                     >
                         {isClient ? 'Post a Project →' : 'Start Freelancing →'}
                     </button>
                     <button
                         className="hs-cta-link"
-                        onClick={() => navigate(isClient ? '/marketplace' : '/projects')}
+                        onClick={() => navigate('/marketplace')}
                     >
                         {isClient ? 'Browse freelancers' : 'Browse open projects'}
                     </button>

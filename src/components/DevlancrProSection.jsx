@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function VerilanceProSection() {
+function VerilancerProSection() {
     const navigate = useNavigate();
     const sectionRef = useRef(null);
     const contentRef = useRef(null);
@@ -31,13 +31,13 @@ function VerilanceProSection() {
                 <div className="devpro__inner">
                     {/* Left content */}
                     <div className="devpro__content" ref={contentRef}>
-                        <span className="devpro__label">verilance pro</span>
+                        <span className="devpro__label">verilancer pro</span>
                         <h2 className="devpro__title">
                             High-quality work,<br />
                             or your <em className="devpro__highlight">money back</em>
                         </h2>
                         <p className="devpro__desc">
-                            On Verilance Pro, you can bring your vision to life risk free. Every
+                            On Verilancer Pro, you can bring your vision to life risk free. Every
                             project with vetted Pro freelancers is backed by our money-back
                             guarantee, so you can accomplish any high-stakes project with total
                             confidence.
@@ -70,4 +70,4 @@ function VerilanceProSection() {
     );
 }
 
-export default VerilanceProSection;
+export default VerilancerProSection;

@@ -149,7 +149,7 @@ function TrustedServicesSection() {
                 {/* Trusted Services */}
                 <div className="ts__services-block">
                     <h2 className="ts__title">
-                        <span className="ts__title-brand">Verilance's</span> trusted services
+                        <span className="ts__title-brand">Verilancer's</span> trusted services
                     </h2>
                     <div className="ts__services-grid" ref={servicesRef}>
                         {services.map((s, i) => (

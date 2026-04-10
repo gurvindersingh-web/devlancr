@@ -238,20 +238,20 @@ const FOOTER_COLS = {
         'AI Services', 'Consulting', 'Data', 'Business',
     ],
     'For Clients': [
-        'How Verilance Works', 'Customer Success Stories', 'Quality Guide',
-        'Verilance Guides', 'Verilance Answers', 'Browse Freelance By Skill',
+        'How Verilancer Works', 'Customer Success Stories', 'Quality Guide',
+        'Verilancer Guides', 'Verilancer Answers', 'Browse Freelance By Skill',
     ],
     'For Freelancers': [
-        'Become a Verilance Freelancer', 'Become an Agency',
+        'Become a Verilancer Freelancer', 'Become an Agency',
         'Community Hub', 'Forum', 'Events',
     ],
     'Business Solutions': [
-        'Verilance Pro', 'Project Management Service', 'Expert Sourcing Service',
+        'Verilancer Pro', 'Project Management Service', 'Expert Sourcing Service',
         'ClearVoice – Content Marketing', 'Dropshipping Tool',
         'Software Development', 'AI Store Builder', 'Contact Sales',
     ],
     'Company': [
-        'About Verilance', 'Help Center', 'Trust & Safety', 'Social Impact',
+        'About Verilancer', 'Help Center', 'Trust & Safety', 'Social Impact',
         'Careers', 'Terms of Service', 'Privacy Policy', 'Partnerships',
         'Creator Network', 'Affiliates', 'Press & News',
     ],
@@ -482,21 +482,21 @@ function MarketplacePage() {
                 </div>
             </section>
 
-            {/* About Verilance Description */}
+            {/* About Verilancer Description */}
             <section className="mp__about ag-reveal">
                 <div className="mp__about-inner">
                     <h2 className="mp__about-title">
-                        Verilance – <span className="gradient-text">The Future of Freelancing</span> Starts Here
+                        Verilancer – <span className="gradient-text">The Future of Freelancing</span> Starts Here
                     </h2>
                     <p className="mp__about-desc">
-                        Verilance is a next-generation freelancing platform where businesses connect
+                        Verilancer is a next-generation freelancing platform where businesses connect
                         with top-tier talent without limits. Powered by intelligent AI matching, the
                         platform helps clients discover the right professionals faster while enabling
                         freelancers to find meaningful, high-value work. With secure payments,
-                        real-time collaboration tools, and a seamless user experience, Verilance brings
+                        real-time collaboration tools, and a seamless user experience, Verilancer brings
                         everything needed for successful project delivery into one unified ecosystem.
                         Whether you're looking to hire expert talent or grow your freelance career,
-                        Verilance provides the speed, trust, and innovation to make it happen.
+                        Verilancer provides the speed, trust, and innovation to make it happen.
                     </p>
                 </div>
             </section>
@@ -542,7 +542,7 @@ function MarketplacePage() {
                 <h2 className="mp__cta-banner-title">
                     Freelance services at your <em>fingertips</em>
                 </h2>
-                <button className="btn btn-primary mp__cta-banner-btn" onClick={() => navigate('/find-expert')}>Verilance Pro</button>
+                <button className="btn btn-primary mp__cta-banner-btn" onClick={() => navigate('/find-expert')}>Verilancer Pro</button>
             </section>
 
             {/* Footer */}
@@ -561,8 +561,8 @@ function MarketplacePage() {
                 </div>
                 <div className="mp__footer-bottom">
                     <div className="mp__footer-brand">
-                        <span className="gradient-text" style={{ fontSize: '1.3rem', fontWeight: 700 }}>Verilance</span>
-                        <span className="mp__footer-copy">© Verilance International Ltd. 2026</span>
+                        <span className="gradient-text" style={{ fontSize: '1.3rem', fontWeight: 700 }}>Verilancer</span>
+                        <span className="mp__footer-copy">© Verilancer International Ltd. 2026</span>
                     </div>
                     <div className="mp__footer-social">
                         <a href="#" aria-label="TikTok">

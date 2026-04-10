@@ -7,10 +7,10 @@ const Footer = () => {
                 <div className="footer__top">
                     <div className="footer__column footer__column--left">
                         <div className="footer__logo">
-                            <span className="gradient-text">Verilance</span> <span className="footer__logo-suffix">AI</span>
+                            <span className="gradient-text">Verilancer</span> <span className="footer__logo-suffix">AI</span>
                         </div>
                         <p className="footer__description">
-                            Verilance builds reliable, high-performance AI matching systems that help businesses
+                            Verilancer builds reliable, high-performance AI matching systems that help businesses
                             automate hiring, gain clearer insights from talent data, and move
                             faster without adding complexity. Built for the future of work.
                         </p>
@@ -35,14 +35,14 @@ const Footer = () => {
                             We make freelance hiring practical, dependable, and accessible for organizations
                             that want to innovate without complexity. Our strength comes from a
                             deep foundation in student talent, paired with the agility of AI that
-                            enjoys pushing boundaries. Verilance is where experience meets innovation.
+                            enjoys pushing boundaries. Verilancer is where experience meets innovation.
                         </p>
                     </div>
                 </div>
 
                 <div className="footer__bottom">
                     <div className="footer__copyright">
-                        © Verilance 2026, all rights reserved.
+                        © Verilancer 2026, all rights reserved.
                     </div>
                     <div className="footer__socials">
                         <a href="#" className="footer__social-link" aria-label="YouTube">
@@ -56,7 +56,7 @@ const Footer = () => {
                         </a>
                     </div>
                     <div className="footer__right-text">
-                        An affiliated platform of Verilance Inc.
+                        An affiliated platform of Verilancer Inc.
                     </div>
                 </div>
             </div>

@@ -25,7 +25,7 @@ function Navbar({ showSearch = true }) {
                 onKeyDown={(e) => e.key === 'Enter' && navigate('/')}
                 style={{ cursor: 'pointer' }}
             >
-                <span className="gradient-text">Verilance</span>
+                <span className="gradient-text">Verilancer</span>
             </div>
 
             {/* Search Bar */}
@@ -48,7 +48,7 @@ function Navbar({ showSearch = true }) {
             <ul className="navbar__links" role="list">
                 <li className="navbar__dropdown">
                     <button className="navbar__link-btn">
-                        Verilance Pro <span className="navbar__caret" aria-hidden="true">›</span>
+                        Verilancer Pro <span className="navbar__caret" aria-hidden="true">›</span>
                     </button>
                     <div className="navbar__dropdown-menu">
                         <button className="navbar__dropdown-item" onClick={() => navigate('/premium?type=client')}>
