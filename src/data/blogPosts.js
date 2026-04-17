@@ -8,6 +8,7 @@ const blogPosts = [
     date: 'April 2, 2026',
     author: 'Verilancerr Team',
     heroGradient: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%)',
+    heroImage: '/images/blog/vision.jpg',
     accentColor: '#8b5cf6',
     sections: [
       {
@@ -202,6 +203,7 @@ const blogPosts = [
     date: 'March 28, 2026',
     author: 'Verilancerr Team',
     heroGradient: 'linear-gradient(135deg, #ec4899 0%, #f472b6 50%, #fb7185 100%)',
+    heroImage: '/images/blog/pricing.jpg',
     accentColor: '#ec4899',
     sections: [
       {
@@ -259,6 +261,7 @@ const blogPosts = [
     date: 'March 22, 2026',
     author: 'Verilancerr Team',
     heroGradient: 'linear-gradient(135deg, #06b6d4 0%, #22d3ee 50%, #67e8f9 100%)',
+    heroImage: '/images/blog/skills.jpg',
     accentColor: '#06b6d4',
     sections: [
       {
@@ -316,6 +319,7 @@ const blogPosts = [
     date: 'March 15, 2026',
     author: 'Verilancerr Team',
     heroGradient: 'linear-gradient(135deg, #f59e0b 0%, #f97316 50%, #ef4444 100%)',
+    heroImage: '/images/blog/guide.jpg',
     accentColor: '#f59e0b',
     sections: [
       {
@@ -373,6 +377,7 @@ const blogPosts = [
     date: 'March 8, 2026',
     author: 'Verilancerr Team',
     heroGradient: 'linear-gradient(135deg, #10b981 0%, #34d399 50%, #6ee7b7 100%)',
+    heroImage: '/images/blog/mindset.jpg',
     accentColor: '#10b981',
     sections: [
       {

@@ -40,8 +40,16 @@ function BlogListPage() {
               onKeyDown={(e) => e.key === 'Enter' && navigate(`/blog/${post.id}`)}
             >
               <div className="blog-card__inner">
-                {/* Hero gradient */}
+                {/* Hero image + gradient overlay */}
                 <div className="blog-card__hero" style={{ background: post.heroGradient }}>
+                  {post.heroImage && (
+                    <img
+                      src={post.heroImage}
+                      alt={post.title}
+                      className="blog-card__hero-img"
+                    />
+                  )}
+                  <div className="blog-card__hero-overlay" style={{ background: post.heroGradient }} />
                   <div className="blog-card__hero-decor blog-card__hero-decor--1" />
                   <div className="blog-card__hero-decor blog-card__hero-decor--2" />
                   <div className="blog-card__hero-decor blog-card__hero-decor--3" />

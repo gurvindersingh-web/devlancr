@@ -95,6 +95,14 @@ function BlogDetailPage() {
       {/* ── Hero Banner ── */}
       <div className="blog-detail__hero">
         <div className="blog-detail__hero-bg" style={{ background: post.heroGradient }}>
+          {post.heroImage && (
+            <img
+              src={post.heroImage}
+              alt={post.title}
+              className="blog-detail__hero-bg-img"
+            />
+          )}
+          <div className="blog-detail__hero-bg-overlay" style={{ background: post.heroGradient }} />
           <div className="blog-detail__orb blog-detail__orb--1" />
           <div className="blog-detail__orb blog-detail__orb--2" />
           <div className="blog-detail__orb blog-detail__orb--3" />
@@ -195,6 +203,14 @@ function BlogDetailPage() {
               >
                 <div className="blog-card__inner">
                   <div className="blog-card__hero" style={{ background: related.heroGradient, minHeight: '160px' }}>
+                    {related.heroImage && (
+                      <img
+                        src={related.heroImage}
+                        alt={related.title}
+                        className="blog-card__hero-img"
+                      />
+                    )}
+                    <div className="blog-card__hero-overlay" style={{ background: related.heroGradient }} />
                     <div className="blog-card__hero-decor blog-card__hero-decor--1" />
                     <div className="blog-card__hero-decor blog-card__hero-decor--2" />
                     <span className="blog-card__category">{related.category}</span>
